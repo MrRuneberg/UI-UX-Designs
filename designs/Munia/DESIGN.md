@@ -29,19 +29,19 @@ Use the semantic token names below in both themes. The hex values are normative 
 
 | Semantic token | CSS property | Value | Intended use |
 |---|---|---:|---|
-| Background | --bg | #FEFDFF | Page canvas |
+| Background | --bg | #F6F1F8 | Page canvas, visibly distinct from white surfaces |
 | Foreground | --fg | #1D1424 | Main text |
 | Surface | --surface | #FFFFFF | Cards and contained content |
 | Surface foreground | --surface-fg | #25152F | Text on cards |
-| Elevated surface | --surface-elevated | #FFFFFF | Menus, dialogs, popovers |
+| Elevated surface | --surface-elevated | #FBF8FD | Menus, dialogs, popovers |
 | Primary | --primary | #8800CA | Main action and selected emphasis |
 | Primary foreground | --primary-fg | #FFFFFF | Text and icons on primary fills |
 | Primary hover | --primary-hover | #6F00A8 | Hovered primary control |
 | Muted surface | --muted | #F0EAF5 | Quiet controls and secondary panels |
 | Muted foreground | --muted-fg | #5E5068 | Secondary text |
 | Surface hover | --surface-hover | #E9DFF0 | Hovered quiet controls |
-| Border | --border | #8A7B91 | Component boundaries and dividers |
-| Input | --input | #F5F1F8 | Form-field fill |
+| Border | --border | #E2D6EC | Subtle card, panel, and divider boundaries |\n| Strong border | --border-strong | #8A7B91 | Input boundaries and controls requiring a clear edge |
+| Input | --input | #F3EDF7 | Recessed form-field fill |
 | Ring | --ring | #6B00A8 | Keyboard focus indicator |
 | Danger | --danger | #B42336 | Destructive status and actions |
 | Danger foreground | --danger-fg | #FFFFFF | Text on danger fills |
@@ -51,7 +51,7 @@ Use the semantic token names below in both themes. The hex values are normative 
 | Warning foreground | --warning-fg | #FFFFFF | Text on warning fills |
 | Info | --info | #175EA8 | Informational status |
 | Info foreground | --info-fg | #FFFFFF | Text on info fills |
-| Overlay | --overlay | #180B24 | Modal scrim base |
+| Overlay | --overlay | rgba(24, 11, 36, 0.64) | Modal scrim; use directly as a translucent colour |
 
 #### Dark theme
 
@@ -65,11 +65,11 @@ Use the semantic token names below in both themes. The hex values are normative 
 | Primary | --primary | #C77BFF | Main action and selected emphasis |
 | Primary foreground | --primary-fg | #210035 | Text and icons on primary fills |
 | Primary hover | --primary-hover | #D69AFF | Hovered primary control |
-| Muted surface | --muted | #302544 | Quiet controls and secondary panels |
+| Muted surface | --muted | #392D4A | Quiet controls and secondary panels, distinct from elevated surfaces |
 | Muted foreground | --muted-fg | #D7C9E2 | Secondary text |
 | Surface hover | --surface-hover | #403252 | Hovered quiet controls |
-| Border | --border | #806D91 | Component boundaries and dividers |
-| Input | --input | #302544 | Form-field fill |
+| Border | --border | #3D3054 | Subtle card, panel, and divider boundaries |\n| Strong border | --border-strong | #806D91 | Input boundaries and controls requiring a clear edge |
+| Input | --input | #171026 | Recessed form-field fill |
 | Ring | --ring | #D9A5FF | Keyboard focus indicator |
 | Danger | --danger | #FF8B9B | Destructive status and actions |
 | Danger foreground | --danger-fg | #2B0710 | Text on danger fills |
@@ -79,13 +79,13 @@ Use the semantic token names below in both themes. The hex values are normative 
 | Warning foreground | --warning-fg | #2B1A00 | Text on warning fills |
 | Info | --info | #85BEFF | Informational status |
 | Info foreground | --info-fg | #071A30 | Text on info fills |
-| Overlay | --overlay | #05000B | Modal scrim base |
+| Overlay | --overlay | rgba(5, 0, 11, 0.72) | Modal scrim; use directly as a translucent colour |
 
 Colour rules:
 - Use --fg for ordinary body copy on the page and --surface-fg for copy on cards. Do not colour long-form posts or comments violet.
 - Use --primary for the main action, selected navigation, focus, and active states. Do not use it as a default paragraph colour.
 - Always pair --primary with --primary-fg. Do not assume white is legible on every violet shade.
-- Keep --border visibly distinct from both the page and surface. Do not reuse the input fill as the border.
+- Use --border for restrained card, panel, and divider structure. Use --border-strong for input boundaries and controls that need a clear edge. Do not apply the strong value to every passive divider. Keep input fill distinct from elevated surfaces.
 - Use muted text only for secondary information. Essential instructions and validation messages use readable foreground or semantic status colours.
 - Status colours are semantic. Pair them with text or an icon and use the corresponding foreground token on filled status treatments.
 - The dark popover and secondary surfaces must stay within the warm violet/plum family. Avoid unrelated blue-grey surfaces that look copied from a different theme.
@@ -114,16 +114,16 @@ Use a 4px base unit.
 
 | Token | Value |
 |---|---:|
-| space-1 | 4px |
-| space-2 | 8px |
-| space-3 | 12px |
-| space-4 | 16px |
-| space-5 | 20px |
-| space-6 | 24px |
-| space-8 | 32px |
-| space-10 | 40px |
-| space-12 | 48px |
-| space-16 | 64px |
+| --space-1 | 4px |
+| --space-2 | 8px |
+| --space-3 | 12px |
+| --space-4 | 16px |
+| --space-5 | 20px |
+| --space-6 | 24px |
+| --space-8 | 32px |
+| --space-10 | 40px |
+| --space-12 | 48px |
+| --space-16 | 64px |
 
 Use 8–12px for compact identity and action groups, 16–20px for card padding, 20–24px between feed items, and 32–48px between major sections. On narrow layouts, reduce outer margins before reducing internal control spacing or hit areas.
 
@@ -131,14 +131,14 @@ Use 8–12px for compact identity and action groups, 16–20px for card padding,
 
 | Token | Value | Use |
 |---|---:|---|
-| radius-sm | 4px | Badges and compact labels |
-| radius-md | 8px | Inputs and compact controls |
-| radius-lg | 12px | Standard cards and buttons |
-| radius-xl | 16px | Dialogs and larger surfaces |
-| radius-2xl | 24px | Profile and discovery surfaces |
-| radius-full | 9999px | Avatars, pills, and circular actions |
-| border-width | 1px | Standard boundary |
-| border-width-strong | 2px | Focused or selected boundary |
+| --radius-sm | 4px | Badges and compact labels |
+| --radius-md | 8px | Inputs and compact controls |
+| --radius-lg | 12px | Standard cards and buttons |
+| --radius-xl | 16px | Dialogs and larger surfaces |
+| --radius-2xl | 24px | Profile and discovery surfaces |
+| --radius-full | 9999px | Avatars, pills, and circular actions |
+| --border-width | 1px | Standard boundary |
+| --border-width-strong | 2px | Focused or selected boundary |
 
 Rounded geometry is a defining trait, but not every element needs the largest radius. Use a consistent radius within each component family. Avatars remain circular. Inputs use rounded rectangles, not floating-label shapes that depend on placeholder behaviour.
 
@@ -157,11 +157,11 @@ In dark theme, reduce shadow reliance and use surface contrast and borders to de
 
 | Token | Value | Use |
 |---|---:|---|
-| motion-fast | 120ms | Button press and small feedback |
-| motion-normal | 180ms | Menus, tabs, and control state |
-| motion-slow | 240ms | Dialogs and content expansion |
-| motion-ease-out | cubic-bezier(0.16, 1, 0.3, 1) | Entering and settling |
-| motion-ease-in-out | cubic-bezier(0.4, 0, 0.2, 1) | Position and theme state changes |
+| --motion-fast | 120ms | Button press and small feedback |
+| --motion-normal | 180ms | Menus, tabs, and control state |
+| --motion-slow | 240ms | Dialogs and content expansion |
+| --motion-ease-out | cubic-bezier(0.16, 1, 0.3, 1) | Entering and settling |
+| --motion-ease-in-out | cubic-bezier(0.4, 0, 0.2, 1) | Position and theme state changes |
 
 Prefer opacity, small transforms, and controlled height changes for genuine expansion. Avoid elastic overshoot and layout shifts. Respect reduced-motion preferences.
 
@@ -246,11 +246,11 @@ The full-screen viewer reduces surrounding interface noise. Provide visible clos
 | Ghost | Minimal surface | Icon actions and quiet controls |
 | Destructive | Danger semantic treatment | Risky or irreversible action |
 
-Do not place multiple competing primary actions together. Use pill shapes for prominent actions where appropriate and circular icon buttons for familiar single-purpose actions. Every icon-only control needs an accessible name. Provide default, hover, pressed, focus, disabled, and pending states.
+Do not place multiple competing primary actions together. Use pill shapes for prominent actions where appropriate and circular icon buttons for familiar single-purpose actions. Every icon-only control needs an accessible name. Provide default, hover, pressed, focus-visible, disabled, and pending states.
 
 ### 6.2 Inputs and forms
 
-Use a quiet input surface with a visible boundary and focus ring.
+Use a recessed --input fill with a --border-strong boundary and a distinct focus ring.
 
 - Place a persistent label above or beside the field. Do not use floating labels that begin as placeholder text.
 - Keep the label visible and readable at all times.
@@ -263,7 +263,7 @@ Use a quiet input surface with a visible boundary and focus ring.
 
 ### 6.3 Dialogs, menus, and popovers
 
-Dialogs use a rounded elevated surface with a clear title, content region, and action area. Provide a close affordance. Move focus into the dialog, contain it when modal, and restore it to the trigger on close. Support Escape when dismissal is safe. Confirm before discarding meaningful unsaved work.
+Dialogs use a rounded --surface-elevated surface with a clear title, content region, and action area, over the translucent --overlay scrim. Provide a close affordance. Move focus into the dialog, contain it when modal, and restore it to the trigger on close. Support Escape when dismissal is safe. Confirm before discarding meaningful unsaved work.
 
 Menus and popovers use compact floating surfaces with readable labels and predictable spacing. Group related actions, use separators sparingly, distinguish destructive actions, and keep the panel within the viewport. A tooltip is never the only way to understand a control.
 
