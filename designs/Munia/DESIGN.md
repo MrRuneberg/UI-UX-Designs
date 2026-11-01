@@ -40,7 +40,8 @@ Use the semantic token names below in both themes. The hex values are normative 
 | Muted surface | --muted | #F0EAF5 | Quiet controls and secondary panels |
 | Muted foreground | --muted-fg | #5E5068 | Secondary text |
 | Surface hover | --surface-hover | #E9DFF0 | Hovered quiet controls |
-| Border | --border | #E2D6EC | Subtle card, panel, and divider boundaries |\n| Strong border | --border-strong | #8A7B91 | Input boundaries and controls requiring a clear edge |
+| Border | --border | #E2D6EC | Subtle card, panel, and divider boundaries |
+| Strong border | --border-strong | #8A7B91 | Input boundaries and controls requiring a clear edge |
 | Input | --input | #F3EDF7 | Recessed form-field fill |
 | Ring | --ring | #6B00A8 | Keyboard focus indicator |
 | Danger | --danger | #B42336 | Destructive status and actions |
@@ -68,7 +69,8 @@ Use the semantic token names below in both themes. The hex values are normative 
 | Muted surface | --muted | #392D4A | Quiet controls and secondary panels, distinct from elevated surfaces |
 | Muted foreground | --muted-fg | #D7C9E2 | Secondary text |
 | Surface hover | --surface-hover | #403252 | Hovered quiet controls |
-| Border | --border | #3D3054 | Subtle card, panel, and divider boundaries |\n| Strong border | --border-strong | #806D91 | Input boundaries and controls requiring a clear edge |
+| Border | --border | #3D3054 | Subtle card, panel, and divider boundaries |
+| Strong border | --border-strong | #806D91 | Input boundaries and controls requiring a clear edge |
 | Input | --input | #171026 | Recessed form-field fill |
 | Ring | --ring | #D9A5FF | Keyboard focus indicator |
 | Danger | --danger | #FF8B9B | Destructive status and actions |
