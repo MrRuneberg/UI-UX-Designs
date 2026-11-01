@@ -8,6 +8,8 @@ The goal is to reproduce the character of JustAnime's experience: **cinematic, d
 
 This is a design specification, not a feature list or a screen-by-screen wireframe. Do not assume that every product using this design must have anime catalogues, streaming, schedules, or the same routes as JustAnime. Apply the visual and interaction principles to the product's actual content and workflows.
 
+Primary reference: <https://github.com/sankethodgar/JustAnime>
+
 ## Design principles
 
 1. **Content is the foreground.** Artwork, titles, and useful metadata take priority over decoration. Use interface surfaces to frame content, not to dominate it.
