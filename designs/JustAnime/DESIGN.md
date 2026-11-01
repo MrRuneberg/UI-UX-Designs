@@ -38,7 +38,8 @@ Use the following semantic tokens as the source of truth. Values are hex so they
 | Muted surface | --muted | #242424 | Quiet controls and supporting regions |
 | Muted foreground | --muted-fg | #B8B8B8 | Secondary text and metadata |
 | Surface hover | --surface-hover | #303030 | Hovered rows and quiet controls |
-| Border | --border | #262626 | Subtle card, panel, and divider boundaries |\n| Strong border | --border-strong | #666666 | Input boundaries and controls requiring a clear edge |
+| Border | --border | #262626 | Subtle card, panel, and divider boundaries |
+| Strong border | --border-strong | #666666 | Input boundaries and controls requiring a clear edge |
 | Input | --input | #141414 | Recessed form-field fill |
 | Ring | --ring | #E5E5E5 | Keyboard focus indicator |
 | Danger | --danger | #FF6B6B | Destructive status and actions |
@@ -235,7 +236,7 @@ The player is a focused media surface. Video dominates; controls appear when nee
 |---|---|---|
 | Primary | Light neutral fill, dark foreground | Main local action |
 | Secondary | Dark surface with subtle border | Alternative action |
-| Tertiary | Text or minimal icon treatment | Low-priority action |
+| Ghost | Text or minimal icon treatment | Low-priority action |
 | Destructive | Danger semantic treatment | Irreversible or risky action |
 
 Use clear verbs. Avoid multiple competing primary actions in one region. Icon-only buttons need accessible names and a tooltip where the meaning is not obvious. Provide default, hover, focus-visible, pressed, disabled, and pending states.
