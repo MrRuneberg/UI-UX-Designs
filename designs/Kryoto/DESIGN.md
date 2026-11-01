@@ -65,16 +65,16 @@ The reference has a technical typographic character. Treat Teletext as a display
 
 Use a readable sans-serif for body text and controls, with a monospace companion for numeric or code-like data. Geist Sans and Geist Mono are suitable reference families; provide robust system fallbacks.
 
-| Style | Size / line height | Weight | Typical use |
+| Style | CSS token | Size / line height | Weight | Typical use |
 |---|---:|---:|---|
-| xs | 12px / 16px | 400–500 | Compact metadata |
-| sm | 14px / 20px | 400–500 | Labels and secondary controls |
-| base | 16px / 24px | 400 | Body and instructions |
-| lg | 18px / 28px | 500 | Panel and card headings |
-| xl | 20px / 28px | 600 | Section headings |
-| 2xl | 24px / 32px | 600 | Page titles |
-| 3xl | 30px / 36px | 600 | Prominent task heading |
-| 4xl | 36px / 44px | 700 | Rare display use |
+| xs | --text-xs | 12px / 16px | 400–500 | Compact metadata |
+| sm | --text-sm | 14px / 20px | 400–500 | Labels and secondary controls |
+| base | --text-base | 16px / 24px | 400 | Body and instructions |
+| lg | --text-lg | 18px / 28px | 500 | Panel and card headings |
+| xl | --text-xl | 20px / 28px | 600 | Section headings |
+| 2xl | --text-2xl | 24px / 32px | 600 | Page titles |
+| 3xl | --text-3xl | 30px / 36px | 600 | Prominent task heading |
+| 4xl | --text-4xl | 36px / 44px | 700 | Rare display use |
 
 Use uppercase and letter spacing only for short section labels, metadata, and compact navigation where it improves scanning. Never use tracked uppercase for paragraphs, form instructions, or user-authored content. Use tabular numerals for values that change or align.
 
