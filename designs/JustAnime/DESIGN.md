@@ -235,7 +235,8 @@ The player is a focused media surface. Video dominates; controls appear when nee
 | Variant | Appearance | Use |
 |---|---|---|
 | Primary | Light neutral fill, dark foreground | Main local action |
-| Secondary | Dark surface with subtle border | Alternative action |
+| Secondary | Dark muted fill with subtle boundary | Alternative action |
+| Outline | Transparent fill with a visible subtle boundary | Lower-priority action that needs a clear edge |
 | Ghost | Text or minimal icon treatment | Low-priority action |
 | Destructive | Danger semantic treatment | Irreversible or risky action |
 
