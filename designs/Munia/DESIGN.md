@@ -29,20 +29,20 @@ Use the semantic token names below in both themes. The hex values are normative 
 
 | Semantic token | CSS property | Value | Intended use |
 |---|---|---:|---|
-| Background | --bg | #F1EAF5 | Page canvas, visibly distinct from white surfaces |
+| Background | --bg | #F6F2FA | Soft lavender page canvas, distinct from white cards |
 | Foreground | --fg | #1D1424 | Main text |
 | Surface | --surface | #FFFFFF | Cards and contained content |
 | Surface foreground | --surface-fg | #25152F | Text on cards |
-| Elevated surface | --surface-elevated | #FBF8FD | Menus, dialogs, popovers |
+| Elevated surface | --surface-elevated | #FFFFFF | Menus, dialogs, popovers |
 | Primary | --primary | #8800CA | Main action and selected emphasis |
 | Primary foreground | --primary-fg | #FFFFFF | Text and icons on primary fills |
 | Primary hover | --primary-hover | #6F00A8 | Hovered primary control |
-| Muted surface | --muted | #F0EAF5 | Quiet controls and secondary panels |
+| Muted surface | --muted | #EAE0F2 | Quiet controls and secondary panels |
 | Muted foreground | --muted-fg | #5E5068 | Secondary text |
 | Surface hover | --surface-hover | #E9DFF0 | Hovered quiet controls |
 | Border | --border | #E2D6EC | Subtle card, panel, and divider boundaries |
 | Strong border | --border-strong | #8A7B91 | Input boundaries and controls requiring a clear edge |
-| Input | --input | #F3EDF7 | Recessed form-field fill |
+| Input | --input | #F2ECF7 | Recessed form-field fill |
 | Ring | --ring | #6B00A8 | Keyboard focus indicator |
 | Danger | --danger | #B42336 | Destructive status and actions |
 | Danger foreground | --danger-fg | #FFFFFF | Text on danger fills |
@@ -98,7 +98,7 @@ Colour rules:
 Use Poppins as the preferred family for its friendly geometric character. Provide a robust sans-serif fallback. Use regular and medium weights for most interface text, semibold for headings and key labels, and bold sparingly.
 
 | Style | CSS token | Size / line height | Weight | Typical use |
-|---|---:|---:|---|
+|---|---|---:|---:|---|
 | xs | --text-xs | 12px / 16px | 400–500 | Timestamps and compact metadata |
 | sm | --text-sm | 14px / 20px | 400–500 | Handles, labels, and secondary controls |
 | base | --text-base | 16px / 24px | 400 | Posts, comments, and body copy |
