@@ -38,8 +38,9 @@ Use the following semantic tokens as the source of truth. Values are hex so they
 | Muted surface | --muted | #242424 | Quiet controls and supporting regions |
 | Muted foreground | --muted-fg | #B8B8B8 | Secondary text and metadata |
 | Surface hover | --surface-hover | #303030 | Hovered rows and quiet controls |
-| Border | --border | #666666 | Visible component boundaries and dividers |
-| Input | --input | #303030 | Form-field fill |
+| Border | --border | #262626 | Subtle card, panel, and divider boundaries |
+| Strong border | --border-strong | #666666 | Input boundaries and controls requiring a clear edge |
+| Input | --input | #141414 | Recessed form-field fill |
 | Ring | --ring | #E5E5E5 | Keyboard focus indicator |
 | Danger | --danger | #FF6B6B | Destructive status and actions |
 | Danger foreground | --danger-fg | #240707 | Text on danger fills |
@@ -49,7 +50,7 @@ Use the following semantic tokens as the source of truth. Values are hex so they
 | Warning foreground | --warning-fg | #241900 | Text on warning fills |
 | Info | --info | #79B8FF | Informational status |
 | Info foreground | --info-fg | #07182B | Text on info fills |
-| Overlay | --overlay | #000000 | Modal scrims and image shading |
+| Overlay | --overlay | rgba(0, 0, 0, 0.68) | Modal scrims; use directly as a translucent colour |
 
 Rules:
 - Use the neutral primary treatment for the principal action in a local context. Its text and icon colour is always --primary-fg; do not default to white text on a light button.
@@ -63,16 +64,16 @@ Rules:
 
 Use Geist Sans as the preferred interface family and Geist Mono for numeric, technical, or aligned data. Provide system sans-serif and monospace fallbacks.
 
-| Style | Size / line height | Weight | Typical use |
+| Style | CSS token | Size / line height | Weight | Typical use |
 |---|---:|---:|---|
-| xs | 12px / 16px | 400–500 | Compact metadata, timestamps |
-| sm | 14px / 20px | 400–500 | Supporting labels and controls |
-| base | 16px / 24px | 400 | Body text and descriptions |
-| lg | 18px / 28px | 500 | Card titles and lead copy |
-| xl | 20px / 28px | 600 | Section headings |
-| 2xl | 24px / 32px | 600 | Page titles |
-| 3xl | 30px / 36px | 600–700 | Featured titles |
-| 4xl | 36px / 44px | 700 | Large display titles, used sparingly |
+| xs | --text-xs | 12px / 16px | 400–500 | Compact metadata, timestamps |
+| sm | --text-sm | 14px / 20px | 400–500 | Supporting labels and controls |
+| base | --text-base | 16px / 24px | 400 | Body text and descriptions |
+| lg | --text-lg | 18px / 28px | 500 | Card titles and lead copy |
+| xl | --text-xl | 20px / 28px | 600 | Section headings |
+| 2xl | --text-2xl | 24px / 32px | 600 | Page titles |
+| 3xl | --text-3xl | 30px / 36px | 600–700 | Featured titles |
+| 4xl | --text-4xl | 36px / 44px | 700 | Large display titles, used sparingly |
 
 Use medium or semibold weights for titles and interactive labels, regular weight for reading text, and compact sizes for secondary metadata. Do not use uppercase for paragraphs. Keep synopsis and description line lengths controlled. Clamp titles only when the complete title remains available elsewhere or through an accessible name.
 
@@ -82,16 +83,16 @@ Use a 4px base unit. Select values from this scale rather than inventing unrelat
 
 | Token | Value |
 |---|---:|
-| space-1 | 4px |
-| space-2 | 8px |
-| space-3 | 12px |
-| space-4 | 16px |
-| space-5 | 20px |
-| space-6 | 24px |
-| space-8 | 32px |
-| space-10 | 40px |
-| space-12 | 48px |
-| space-16 | 64px |
+| --space-1 | 4px |
+| --space-2 | 8px |
+| --space-3 | 12px |
+| --space-4 | 16px |
+| --space-5 | 20px |
+| --space-6 | 24px |
+| --space-8 | 32px |
+| --space-10 | 40px |
+| --space-12 | 48px |
+| --space-16 | 64px |
 
 Use 8–12px for compact control groups, 16–24px for card padding, 24–32px between related content groups, and 32–48px between major page sections. Reduce outer gutters before reducing control hit areas on narrow screens.
 
@@ -99,14 +100,14 @@ Use 8–12px for compact control groups, 16–24px for card padding, 24–32px b
 
 | Token | Value | Use |
 |---|---:|---|
-| radius-sm | 4px | Badges and compact elements |
-| radius-md | 8px | Inputs, buttons, and small cards |
-| radius-lg | 12px | Standard cards and menus |
-| radius-xl | 16px | Dialogs and large media surfaces |
-| radius-2xl | 24px | Featured containers when appropriate |
-| radius-full | 9999px | Pills and circular controls |
-| border-width | 1px | Standard boundary |
-| border-width-strong | 2px | Selected or emphasized boundary |
+| --radius-sm | 4px | Badges and compact elements |
+| --radius-md | 8px | Inputs, buttons, and small cards |
+| --radius-lg | 12px | Standard cards and menus |
+| --radius-xl | 16px | Dialogs and large media surfaces |
+| --radius-2xl | 24px | Featured containers when appropriate |
+| --radius-full | 9999px | Pills and circular controls |
+| --border-width | 1px | Standard boundary |
+| --border-width-strong | 2px | Selected or emphasized boundary |
 
 Prefer a border and small tonal shift over a large shadow for ordinary cards. Use a soft shadow only for layers that float above the page. Clip artwork to its container. Avoid nested card-on-card layouts.
 
@@ -125,11 +126,11 @@ Do not use elevation as the only indication of grouping or focus.
 
 | Token | Value | Use |
 |---|---:|---|
-| motion-fast | 120ms | Press and small hover feedback |
-| motion-normal | 180ms | Buttons, tabs, and menu transitions |
-| motion-slow | 240ms | Dialogs and larger content transitions |
-| motion-ease-out | cubic-bezier(0.16, 1, 0.3, 1) | Entering and settling |
-| motion-ease-in-out | cubic-bezier(0.4, 0, 0.2, 1) | State changes and movement |
+| --motion-fast | 120ms | Press and small hover feedback |
+| --motion-normal | 180ms | Buttons, tabs, and menu transitions |
+| --motion-slow | 240ms | Dialogs and larger content transitions |
+| --motion-ease-out | cubic-bezier(0.16, 1, 0.3, 1) | Entering and settling |
+| --motion-ease-in-out | cubic-bezier(0.4, 0, 0.2, 1) | State changes and movement |
 
 Prefer opacity and small transforms. Do not animate large layout changes or delay an action. Disable nonessential movement when reduced motion is requested.
 
@@ -234,8 +235,9 @@ The player is a focused media surface. Video dominates; controls appear when nee
 | Variant | Appearance | Use |
 |---|---|---|
 | Primary | Light neutral fill, dark foreground | Main local action |
-| Secondary | Dark surface with subtle border | Alternative action |
-| Tertiary | Text or minimal icon treatment | Low-priority action |
+| Secondary | Dark muted fill with subtle boundary | Alternative action |
+| Outline | Transparent fill with a visible subtle boundary | Lower-priority action that needs a clear edge |
+| Ghost | Text or minimal icon treatment | Low-priority action |
 | Destructive | Danger semantic treatment | Irreversible or risky action |
 
 Use clear verbs. Avoid multiple competing primary actions in one region. Icon-only buttons need accessible names and a tooltip where the meaning is not obvious. Provide default, hover, focus-visible, pressed, disabled, and pending states.
@@ -243,7 +245,7 @@ Use clear verbs. Avoid multiple competing primary actions in one region. Icon-on
 ### 6.2 Inputs and forms
 
 - Use a persistent label above or beside each field. A placeholder is supplementary example text, never the only label.
-- Use a dark input surface with a visible border and a distinct focus ring.
+- Use a recessed input fill (--input), a strong boundary (--border-strong), and a distinct focus ring. Reserve --border for subtle card and divider structure.
 - Support text, search, password, number, date, select, checkbox, radio, switch, and textarea controls with consistent sizing and state treatment.
 - Group related fields with section labels and spacing.
 - Place validation beside the affected field and explain how to correct the value.
@@ -267,7 +269,7 @@ Use a simple underline or border for selected tabs. Expose selected state semant
 
 ### 6.5 Dialogs
 
-Use a dark scrim and a surface from the same palette. Provide a clear title, close action, and predictable action order. Move focus into the dialog, contain focus while modal, and restore focus to the trigger on close. Escape dismisses when safe. On narrow screens, adapt the dialog to available space rather than scaling down a desktop panel.
+Use the translucent --overlay scrim and a surface from the same palette. Provide a clear title, close action, and predictable action order. Move focus into the dialog, contain focus while modal, and restore focus to the trigger on close. Escape dismisses when safe. On narrow screens, adapt the dialog to available space rather than scaling down a desktop panel.
 
 ### 6.6 Badges, loading, and feedback
 
