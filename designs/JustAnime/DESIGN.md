@@ -65,7 +65,7 @@ Rules:
 Use Geist Sans as the preferred interface family and Geist Mono for numeric, technical, or aligned data. Provide system sans-serif and monospace fallbacks.
 
 | Style | CSS token | Size / line height | Weight | Typical use |
-|---|---:|---:|---|
+|---|---|---:|---:|---|
 | xs | --text-xs | 12px / 16px | 400–500 | Compact metadata, timestamps |
 | sm | --text-sm | 14px / 20px | 400–500 | Supporting labels and controls |
 | base | --text-base | 16px / 24px | 400 | Body text and descriptions |
