@@ -66,7 +66,7 @@ The reference has a technical typographic character. Treat Teletext as a display
 Use a readable sans-serif for body text and controls, with a monospace companion for numeric or code-like data. Geist Sans and Geist Mono are suitable reference families; provide robust system fallbacks.
 
 | Style | CSS token | Size / line height | Weight | Typical use |
-|---|---:|---:|---|
+|---|---|---:|---:|---|
 | xs | --text-xs | 12px / 16px | 400–500 | Compact metadata |
 | sm | --text-sm | 14px / 20px | 400–500 | Labels and secondary controls |
 | base | --text-base | 16px / 24px | 400 | Body and instructions |
@@ -106,7 +106,7 @@ Use 8–12px inside compact controls, 12–16px between related controls, 20–2
 | --radius-lg | 12px | Panels and dialogs |
 | --radius-xl | 16px | Large contained surfaces |
 | --radius-2xl | 20px | Rare large grouping |
-| --radius-pill | 9999px | Buttons, chips, segmented navigation |
+| --radius-full | 9999px | Buttons, chips, segmented navigation |
 | --border-width | 1px | Standard boundary |
 | --border-width-strong | 2px | Focused or selected boundary |
 
