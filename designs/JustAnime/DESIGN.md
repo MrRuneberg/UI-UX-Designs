@@ -64,16 +64,16 @@ Rules:
 
 Use Geist Sans as the preferred interface family and Geist Mono for numeric, technical, or aligned data. Provide system sans-serif and monospace fallbacks.
 
-| Style | Size / line height | Weight | Typical use |
+| Style | CSS token | Size / line height | Weight | Typical use |
 |---|---:|---:|---|
-| xs | 12px / 16px | 400–500 | Compact metadata, timestamps |
-| sm | 14px / 20px | 400–500 | Supporting labels and controls |
-| base | 16px / 24px | 400 | Body text and descriptions |
-| lg | 18px / 28px | 500 | Card titles and lead copy |
-| xl | 20px / 28px | 600 | Section headings |
-| 2xl | 24px / 32px | 600 | Page titles |
-| 3xl | 30px / 36px | 600–700 | Featured titles |
-| 4xl | 36px / 44px | 700 | Large display titles, used sparingly |
+| xs | --text-xs | 12px / 16px | 400–500 | Compact metadata, timestamps |
+| sm | --text-sm | 14px / 20px | 400–500 | Supporting labels and controls |
+| base | --text-base | 16px / 24px | 400 | Body text and descriptions |
+| lg | --text-lg | 18px / 28px | 500 | Card titles and lead copy |
+| xl | --text-xl | 20px / 28px | 600 | Section headings |
+| 2xl | --text-2xl | 24px / 32px | 600 | Page titles |
+| 3xl | --text-3xl | 30px / 36px | 600–700 | Featured titles |
+| 4xl | --text-4xl | 36px / 44px | 700 | Large display titles, used sparingly |
 
 Use medium or semibold weights for titles and interactive labels, regular weight for reading text, and compact sizes for secondary metadata. Do not use uppercase for paragraphs. Keep synopsis and description line lengths controlled. Clamp titles only when the complete title remains available elsewhere or through an accessible name.
 
