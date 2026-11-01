@@ -38,7 +38,8 @@ Use a near-black, OLED-inspired palette with a restrained teal primary accent. T
 | Muted surface | --muted | #252E38 | Quiet controls and supporting regions |
 | Muted foreground | --muted-fg | #C1CBD5 | Secondary text and metadata |
 | Surface hover | --surface-hover | #303B47 | Hovered quiet controls |
-| Border | --border | #222C38 | Subtle card, panel, and divider boundaries |\n| Strong border | --border-strong | #65717D | Input boundaries and controls requiring a clear edge |
+| Border | --border | #222C38 | Subtle card, panel, and divider boundaries |
+| Strong border | --border-strong | #65717D | Input boundaries and controls requiring a clear edge |
 | Input | --input | #0E1319 | Recessed form-field fill |
 | Ring | --ring | #9AF5E8 | Keyboard focus indicator |
 | Danger | --danger | #FF7777 | Destructive status and actions |
@@ -189,7 +190,7 @@ Use simple line icons with consistent optical size and stroke. Icon-only control
 ### 5.3 Inputs and forms
 
 - Use persistent labels above or beside fields; placeholders are supplementary.
-- Use rounded rectangular fields with --input fill, --border boundary, and a visible --ring focus state.
+- Use rounded rectangular fields with --input fill, --border-strong boundary, and a visible --ring focus state.
 - Do not make text inputs full pills merely because buttons are pills.
 - Support text, search, password, number, date, select, checkbox, radio, switch, and textarea patterns with coherent geometry.
 - Group related fields by spacing and short section labels.
@@ -270,7 +271,11 @@ Do not overfit the design to one Linux/WebKitGTK combination. Likewise, do not i
 - Keep targets comfortably operable with supported input methods.
 - Important information must not exist only in a tooltip or transient toast.
 
-## 9. Iconography\n\nUse a consistent family of simple line icons. Keep stroke weight and optical size consistent. Use the same icon for the same action throughout the product. Avoid emoji or arbitrary text characters as substitutes for core interface icons. Hide decorative icons from assistive technology and give each icon-only control an accessible name.\n\n## 10. Implementation and adaptation guidance
+## 9. Iconography
+
+Use a consistent family of simple line icons. Keep stroke weight and optical size consistent. Use the same icon for the same action throughout the product. Avoid emoji or arbitrary text characters as substitutes for core interface icons. Hide decorative icons from assistive technology and give each icon-only control an accessible name.
+
+## 10. Implementation and adaptation guidance
 
 - Centralise semantic colour, typography, spacing, radius, border, elevation, focus, and motion tokens.
 - Build reusable controls and interaction patterns.
