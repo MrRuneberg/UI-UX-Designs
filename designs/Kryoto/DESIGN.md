@@ -177,6 +177,7 @@ A compact status or action bar is optional.
 | Variant | Appearance | Use |
 |---|---|---|
 | Primary | Teal filled pill with dark foreground | Main local action |
+| Secondary | Muted surface fill | Alternative action |
 | Outline | Transparent or surface fill with border | Secondary action |
 | Ghost | No permanent border | Low-emphasis action |
 | Destructive | Danger semantic treatment | Risky or irreversible action |
