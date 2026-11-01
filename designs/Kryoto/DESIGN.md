@@ -38,8 +38,8 @@ Use a near-black, OLED-inspired palette with a restrained teal primary accent. T
 | Muted surface | --muted | #252E38 | Quiet controls and supporting regions |
 | Muted foreground | --muted-fg | #C1CBD5 | Secondary text and metadata |
 | Surface hover | --surface-hover | #303B47 | Hovered quiet controls |
-| Border | --border | #65717D | Visible boundaries and dividers |
-| Input | --input | #1A232D | Form-field fill |
+| Border | --border | #222C38 | Subtle card, panel, and divider boundaries |\n| Strong border | --border-strong | #65717D | Input boundaries and controls requiring a clear edge |
+| Input | --input | #0E1319 | Recessed form-field fill |
 | Ring | --ring | #9AF5E8 | Keyboard focus indicator |
 | Danger | --danger | #FF7777 | Destructive status and actions |
 | Danger foreground | --danger-fg | #250707 | Text on danger fills |
@@ -49,7 +49,7 @@ Use a near-black, OLED-inspired palette with a restrained teal primary accent. T
 | Warning foreground | --warning-fg | #251A00 | Text on warning fills |
 | Info | --info | #78BFFF | Informational status |
 | Info foreground | --info-fg | #07182A | Text on info fills |
-| Overlay | --overlay | #000000 | Modal scrims |
+| Overlay | --overlay | rgba(0, 0, 0, 0.68) | Modal scrims; use directly as a translucent colour |
 
 Rules:
 - Use --primary only for the most important action or active state in a local context. Its text always uses --primary-fg.
@@ -83,16 +83,16 @@ Use a 4px base unit.
 
 | Token | Value |
 |---|---:|
-| space-1 | 4px |
-| space-2 | 8px |
-| space-3 | 12px |
-| space-4 | 16px |
-| space-5 | 20px |
-| space-6 | 24px |
-| space-8 | 32px |
-| space-10 | 40px |
-| space-12 | 48px |
-| space-16 | 64px |
+| --space-1 | 4px |
+| --space-2 | 8px |
+| --space-3 | 12px |
+| --space-4 | 16px |
+| --space-5 | 20px |
+| --space-6 | 24px |
+| --space-8 | 32px |
+| --space-10 | 40px |
+| --space-12 | 48px |
+| --space-16 | 64px |
 
 Use 8–12px inside compact controls, 12–16px between related controls, 20–24px for panel padding, and 24–32px between distinct work areas. Compactness must not reduce target sizes or readability.
 
@@ -100,14 +100,14 @@ Use 8–12px inside compact controls, 12–16px between related controls, 20–2
 
 | Token | Value | Use |
 |---|---:|---|
-| radius-sm | 4px | Badges and compact labels |
-| radius-md | 8px | Inputs, menus, and rectangular controls |
-| radius-lg | 12px | Panels and dialogs |
-| radius-xl | 16px | Large contained surfaces |
-| radius-2xl | 20px | Rare large grouping |
-| radius-pill | 9999px | Buttons, chips, segmented navigation |
-| border-width | 1px | Standard boundary |
-| border-width-strong | 2px | Focused or selected boundary |
+| --radius-sm | 4px | Badges and compact labels |
+| --radius-md | 8px | Inputs, menus, and rectangular controls |
+| --radius-lg | 12px | Panels and dialogs |
+| --radius-xl | 16px | Large contained surfaces |
+| --radius-2xl | 20px | Rare large grouping |
+| --radius-pill | 9999px | Buttons, chips, segmented navigation |
+| --border-width | 1px | Standard boundary |
+| --border-width-strong | 2px | Focused or selected boundary |
 
 Pill geometry is a deliberate motif for actions and segmented navigation, not a rule for every control. Inputs, select fields, menus, and work panels use rounded rectangles. This keeps form fields from looking like oversized search pills and avoids a geometry clash.
 
@@ -128,11 +128,11 @@ Use opaque surfaces as the baseline. Do not depend on blur or transparency to es
 
 | Token | Value | Use |
 |---|---:|---|
-| motion-fast | 120ms | Press and focus feedback |
-| motion-normal | 180ms | Menus, tabs, and controls |
-| motion-slow | 240ms | Dialogs and larger transitions |
-| motion-ease-out | cubic-bezier(0.16, 1, 0.3, 1) | Entering and settling |
-| motion-ease-in-out | cubic-bezier(0.4, 0, 0.2, 1) | Selection and position changes |
+| --motion-fast | 120ms | Press and focus feedback |
+| --motion-normal | 180ms | Menus, tabs, and controls |
+| --motion-slow | 240ms | Dialogs and larger transitions |
+| --motion-ease-out | cubic-bezier(0.16, 1, 0.3, 1) | Entering and settling |
+| --motion-ease-in-out | cubic-bezier(0.4, 0, 0.2, 1) | Selection and position changes |
 
 Keep motion brief. Prefer opacity and transform. Avoid bounce, perpetual animation, large shimmer effects, and layout movement that changes control position during interaction. Respect reduced-motion preferences.
 
@@ -203,7 +203,7 @@ Use a panel when it represents a meaningful group of content or actions. Keep th
 
 ### 5.5 Menus and popovers
 
-Anchor floating content to its trigger. Use an elevated opaque surface, subtle border, and restrained shadow. Keep menu rows compact and readable. Add icons, shortcuts, and separators only when useful. Support keyboard operation and Escape dismissal. Menus must remain within the viewport or desktop window and must not depend on hover.
+Anchor floating content to its trigger. Use an elevated surface, subtle --border, and restrained shadow. Keep menu rows compact and readable. Add icons, shortcuts, and separators only when useful. Support keyboard operation and Escape dismissal. Menus must remain within the viewport or desktop window and must not depend on hover.
 
 ### 5.6 Dialogs and settings
 
@@ -270,7 +270,7 @@ Do not overfit the design to one Linux/WebKitGTK combination. Likewise, do not i
 - Keep targets comfortably operable with supported input methods.
 - Important information must not exist only in a tooltip or transient toast.
 
-## 9. Implementation and adaptation guidance
+## 9. Iconography\n\nUse a consistent family of simple line icons. Keep stroke weight and optical size consistent. Use the same icon for the same action throughout the product. Avoid emoji or arbitrary text characters as substitutes for core interface icons. Hide decorative icons from assistive technology and give each icon-only control an accessible name.\n\n## 10. Implementation and adaptation guidance
 
 - Centralise semantic colour, typography, spacing, radius, border, elevation, focus, and motion tokens.
 - Build reusable controls and interaction patterns.
@@ -280,7 +280,7 @@ Do not overfit the design to one Linux/WebKitGTK combination. Likewise, do not i
 - Do not copy proprietary assets, branding, or product features without authorisation.
 - Do not copy source implementation defects as design requirements.
 
-## 10. Quality checklist
+## 11. Quality checklist
 
 - [ ] The interface feels restrained, technical, dark, and precise.
 - [ ] Semantic tokens have explicit hex values and foreground pairings.
