@@ -29,7 +29,7 @@ Use the semantic token names below in both themes. The hex values are normative 
 
 | Semantic token | CSS property | Value | Intended use |
 |---|---|---:|---|
-| Background | --bg | #F6F1F8 | Page canvas, visibly distinct from white surfaces |
+| Background | --bg | #F1EAF5 | Page canvas, visibly distinct from white surfaces |
 | Foreground | --fg | #1D1424 | Main text |
 | Surface | --surface | #FFFFFF | Cards and contained content |
 | Surface foreground | --surface-fg | #25152F | Text on cards |
@@ -97,16 +97,16 @@ Colour rules:
 
 Use Poppins as the preferred family for its friendly geometric character. Provide a robust sans-serif fallback. Use regular and medium weights for most interface text, semibold for headings and key labels, and bold sparingly.
 
-| Style | Size / line height | Weight | Typical use |
+| Style | CSS token | Size / line height | Weight | Typical use |
 |---|---:|---:|---|
-| xs | 12px / 16px | 400–500 | Timestamps and compact metadata |
-| sm | 14px / 20px | 400–500 | Handles, labels, and secondary controls |
-| base | 16px / 24px | 400 | Posts, comments, and body copy |
-| lg | 18px / 28px | 500 | Card and profile subheadings |
-| xl | 20px / 28px | 600 | Section headings |
-| 2xl | 24px / 32px | 600 | Page titles |
-| 3xl | 30px / 36px | 600–700 | Profile and discovery headings |
-| 4xl | 36px / 44px | 700 | Rare display use |
+| xs | --text-xs | 12px / 16px | 400–500 | Timestamps and compact metadata |
+| sm | --text-sm | 14px / 20px | 400–500 | Handles, labels, and secondary controls |
+| base | --text-base | 16px / 24px | 400 | Posts, comments, and body copy |
+| lg | --text-lg | 18px / 28px | 500 | Card and profile subheadings |
+| xl | --text-xl | 20px / 28px | 600 | Section headings |
+| 2xl | --text-2xl | 24px / 32px | 600 | Page titles |
+| 3xl | --text-3xl | 30px / 36px | 600–700 | Profile and discovery headings |
+| 4xl | --text-4xl | 36px / 44px | 700 | Rare display use |
 
 Use natural casing. Keep posts, comments, and biographies readable at the base size. Use smaller text for timestamps and counts, not for essential instructions. Do not truncate user-generated content without an explicit expand affordance.
 
