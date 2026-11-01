@@ -1,335 +1,295 @@
-# DESIGN.md
+# Kryoto-inspired UI/UX design specification
 
-## Purpose
+## 1. Purpose and scope
 
-This document defines a reusable UI/UX direction inspired by **Kryoto Desktop**. Use it when designing a web application, a desktop application, or one product delivered on both platforms.
+This specification defines a reusable visual and interaction system inspired by [Kryoto Desktop](https://github.com/Kryoto-Dev/kryoto-desktop). It covers web interfaces, desktop applications, and products delivered on both platforms.
 
-The goal is to carry over Kryoto's visual character and interaction principles, not to reproduce its product, screens, content, or feature set. The product's information architecture, workflows, features, and content must come from its own requirements. Do not invent them to imitate the reference.
+The goal is to preserve Kryoto's restrained, compact, technical character without reproducing its product screens, branding, or feature set. The product's own requirements determine its information architecture and workflows.
 
-This is a design specification, not a technology-stack prescription. It describes the expected visual and interaction outcome while leaving implementation decisions to the project.
+This document specifies design outcomes, not a mandatory framework or implementation stack.
 
-Primary reference: <https://github.com/Kryoto-Dev/kryoto-desktop>
+## 2. Design principles
 
-## 1. Design direction
+1. **Precise hierarchy.** Use typography, spacing, and contrast before decoration.
+2. **Compact, not cramped.** Use space efficiently while preserving readable text and comfortable control targets.
+3. **One emphasis at a time.** Reserve the strongest fill for the primary action or active selection in its local context.
+4. **Quiet surfaces.** Prefer subtle surface differences and borders over nested cards and heavy shadows.
+5. **Technical character.** Use restrained uppercase labels, deliberate tracking, clean line icons, and selected pill-shaped controls.
+6. **Progressive disclosure.** Keep infrequent actions in menus or contextual controls.
+7. **Platform-aware consistency.** Share the visual system across web and desktop while respecting native window conventions.
+8. **Motion with meaning.** Use short feedback and state transitions; never rely on animation to communicate essential information.
 
-The interface should feel:
+## 3. Foundations and design tokens
 
-- **Dark and restrained.** Use a near-black foundation, closely related neutral surfaces, subtle borders, and clear foreground contrast.
-- **Compact but readable.** Make efficient use of space without making content, labels, or controls difficult to read or operate.
-- **Technical and distinctive.** Use purposeful typography, tracked uppercase labels, simple line icons, pill-shaped controls, and a small set of recognisable status treatments.
-- **Precise.** Align elements carefully, use consistent spacing, and make selection and interaction states unambiguous.
-- **Quiet.** Keep decoration, persistent chrome, shadows, and visual noise under control. The user's current task should dominate.
-- **Cohesive across surfaces.** Preserve the same visual language in browsers and desktop windows while adapting platform-specific framing and behaviour.
+### 3.1 Colour system
 
-Avoid generic dashboard styling, excessive nested cards, oversized decorative headers, gradients used as decoration, and interfaces where every element competes for attention.
+Use a near-black, OLED-inspired palette with a restrained teal primary accent. The exact values below are the normative starting palette; do not leave semantic roles to individual implementation guesses.
 
-## 2. Core principles
+| Semantic token | CSS property | Value | Intended use |
+|---|---|---:|---|
+| Background | --bg | #080A0D | Main application canvas |
+| Foreground | --fg | #F3F5F7 | Main text and important icons |
+| Surface | --surface | #121820 | Panels and grouped content |
+| Surface foreground | --surface-fg | #E8EDF2 | Text on surfaces |
+| Elevated surface | --surface-elevated | #1A232D | Menus, dialogs, floating panels |
+| Primary | --primary | #75E0D2 | Main action and selected emphasis |
+| Primary foreground | --primary-fg | #071311 | Text and icons on primary fills |
+| Primary hover | --primary-hover | #91EEE2 | Hovered primary control |
+| Muted surface | --muted | #252E38 | Quiet controls and supporting regions |
+| Muted foreground | --muted-fg | #C1CBD5 | Secondary text and metadata |
+| Surface hover | --surface-hover | #303B47 | Hovered quiet controls |
+| Border | --border | #65717D | Visible boundaries and dividers |
+| Input | --input | #1A232D | Form-field fill |
+| Ring | --ring | #9AF5E8 | Keyboard focus indicator |
+| Danger | --danger | #FF7777 | Destructive status and actions |
+| Danger foreground | --danger-fg | #250707 | Text on danger fills |
+| Success | --success | #78DCA4 | Successful status |
+| Success foreground | --success-fg | #071D11 | Text on success fills |
+| Warning | --warning | #FFD36E | Warning status |
+| Warning foreground | --warning-fg | #251A00 | Text on warning fills |
+| Info | --info | #78BFFF | Informational status |
+| Info foreground | --info-fg | #07182A | Text on info fills |
+| Overlay | --overlay | #000000 | Modal scrims |
 
-1. **Hierarchy over decoration.** Use layout, typography, spacing, and contrast to establish importance. Add borders and surfaces only when they clarify structure.
-2. **One strong emphasis at a time.** Reserve the light, filled treatment for the primary action or active selection in its local context. Keep secondary actions quieter.
-3. **Content over chrome.** Navigation, toolbars, window framing, and status elements should take only the space they need.
-4. **Consistency over novelty.** A given action or state should look and behave the same throughout the product.
-5. **Progressive disclosure.** Keep infrequent actions in menus or contextual controls instead of displaying every option permanently.
-6. **Motion with meaning.** Animation should explain a state change or provide feedback, never be required to understand the interface.
-7. **Adapt the pattern to the task.** Use Kryoto-inspired patterns where they improve clarity. Do not force them into an unsuitable workflow.
-8. **Responsive by composition.** Reorganise the interface as space changes; do not merely shrink a wide layout.
-
-## 3. Visual system
-
-### 3.1 Colour
-
-Use a near-black, OLED-inspired theme as the visual baseline. The palette should be predominantly neutral, with high-contrast foreground content and restrained semantic colours.
-
-Define a central set of semantic colour roles:
-
-- `background` and `foreground` for the primary page or application surface.
-- `surface` and `surface-foreground` for grouped or raised content.
-- `popover` and `popover-foreground` for menus and floating panels.
-- `primary` and `primary-foreground` for the most important action or selected item.
-- `secondary`, `muted`, and their foreground roles for quiet controls and supporting information.
-- `border`, `divider`, `input`, and `focus` for structure and interaction feedback.
-- `success`, `warning`, `info`, and `destructive` for meaningful status communication.
-
-Keep the difference between adjacent surfaces subtle but perceptible. Borders should usually be low contrast. Use semantic colours to communicate meaning, not to decorate the interface. Do not invent one-off colours when a semantic token already exists.
-
-The reference uses a very dark OLED palette and offers alternative palettes. Treat the dark neutral palette as the starting point. Additional themes are optional; when present, they must use the same semantic roles and preserve contrast. Do not assume every display renders black identically.
+Rules:
+- Use --primary only for the most important action or active state in a local context. Its text always uses --primary-fg.
+- Keep background and surface tones close, but distinguish adjacent layers with a visible boundary or luminance change.
+- Use --muted-fg for supporting content, not essential instructions or error messages.
+- Semantic colours communicate meaning; pair them with a label or icon.
+- The dark palette is the default. If an alternate theme is introduced, define all semantic roles as a complete set and validate its contrast. Do not derive it by simply inverting every value.
 
 ### 3.2 Typography
 
-Typography is a defining part of the reference's identity.
+The reference has a technical typographic character. Treat Teletext as a display reference for short decorative labels or headings only, not as the default reading face. Bitmap-like type can become difficult to read at fractional scaling, may lack weights, and may not cover all writing systems.
 
-- Use **Teletext** as the primary typographic reference where the font can be included and distributed appropriately. Preserve its compact, technical character.
-- Use **Geist Mono** or a comparable monospace face for numeric values, aligned data, code-like content, and fixed-width details.
-- Provide sensible system fallbacks. If the reference fonts are unavailable or unsuitable, choose legible alternatives with a similar technical tone rather than an unrelated display font.
-- Use uppercase labels with deliberate letter spacing for section labels, compact navigation, and metadata. Do not apply this treatment to paragraphs, long-form content, or user-authored text.
-- Keep a clear type hierarchy. Titles should be distinct without being oversized; supporting text should be quieter but still readable.
-- Use tabular numerals for changing or aligned values such as counts, durations, sizes, and progress.
-- Use font weight sparingly. Reserve stronger weight for emphasis, active items, and important values.
+Use a readable sans-serif for body text and controls, with a monospace companion for numeric or code-like data. Geist Sans and Geist Mono are suitable reference families; provide robust system fallbacks.
 
-Typography must remain usable at browser zoom levels and operating-system display scaling settings. Never rely on tiny text to achieve density.
+| Style | Size / line height | Weight | Typical use |
+|---|---:|---:|---|
+| xs | 12px / 16px | 400–500 | Compact metadata |
+| sm | 14px / 20px | 400–500 | Labels and secondary controls |
+| base | 16px / 24px | 400 | Body and instructions |
+| lg | 18px / 28px | 500 | Panel and card headings |
+| xl | 20px / 28px | 600 | Section headings |
+| 2xl | 24px / 32px | 600 | Page titles |
+| 3xl | 30px / 36px | 600 | Prominent task heading |
+| 4xl | 36px / 44px | 700 | Rare display use |
 
-### 3.3 Shape and surfaces
+Use uppercase and letter spacing only for short section labels, metadata, and compact navigation where it improves scanning. Never use tracked uppercase for paragraphs, form instructions, or user-authored content. Use tabular numerals for values that change or align.
 
-- Treat pill-shaped controls as a recognisable visual motif for buttons, icon buttons, chips, and segmented navigation.
-- Use rounded rectangular surfaces for dialogs and substantial panels where containment is useful.
-- Use consistent corner treatments. Do not mix arbitrary radii within the same component family.
-- Prefer thin borders and subtle surface changes over heavy outlines or large shadows.
-- Keep shadows restrained and use them only to distinguish floating elements from the content beneath.
-- Do not wrap every group of content in a card. Use spacing and alignment before adding another surface.
+### 3.3 Spacing scale
 
-### 3.4 Spacing and alignment
+Use a 4px base unit.
 
-Use a consistent spacing scale across the interface. Related controls should share alignment, padding, and gaps. Use larger spacing to distinguish separate groups or levels of hierarchy.
+| Token | Value |
+|---|---:|
+| space-1 | 4px |
+| space-2 | 8px |
+| space-3 | 12px |
+| space-4 | 16px |
+| space-5 | 20px |
+| space-6 | 24px |
+| space-8 | 32px |
+| space-10 | 40px |
+| space-12 | 48px |
+| space-16 | 64px |
 
-Keep layouts visually compact but preserve comfortable control targets and readable line lengths. Dimensions must be chosen in response to content, context, viewport or window space, and input method. Do not copy fixed pixel dimensions from the reference or prescribe arbitrary universal sizes.
+Use 8–12px inside compact controls, 12–16px between related controls, 20–24px for panel padding, and 24–32px between distinct work areas. Compactness must not reduce target sizes or readability.
 
-## 4. Layout and composition
+### 3.4 Shape and surfaces
 
-Kryoto's composition is a reference, not a mandatory screen template. Use only the layout regions the actual product needs.
+| Token | Value | Use |
+|---|---:|---|
+| radius-sm | 4px | Badges and compact labels |
+| radius-md | 8px | Inputs, menus, and rectangular controls |
+| radius-lg | 12px | Panels and dialogs |
+| radius-xl | 16px | Large contained surfaces |
+| radius-2xl | 20px | Rare large grouping |
+| radius-pill | 9999px | Buttons, chips, segmented navigation |
+| border-width | 1px | Standard boundary |
+| border-width-strong | 2px | Focused or selected boundary |
+
+Pill geometry is a deliberate motif for actions and segmented navigation, not a rule for every control. Inputs, select fields, menus, and work panels use rounded rectangles. This keeps form fields from looking like oversized search pills and avoids a geometry clash.
+
+Prefer thin borders and restrained shadows. Use spacing before adding another card. A static surface must not look interactive unless it can be activated.
+
+### 3.5 Elevation
+
+| Level | Treatment | Use |
+|---|---|---|
+| 0 | No shadow | Main work area |
+| 1 | 0 2px 8px rgba(0,0,0,.24) | Subtle panel separation |
+| 2 | 0 8px 24px rgba(0,0,0,.42) | Menus and popovers |
+| 3 | 0 16px 48px rgba(0,0,0,.56) | Dialogs and modal layers |
+
+Use opaque surfaces as the baseline. Do not depend on blur or transparency to establish hierarchy.
+
+### 3.6 Motion tokens
+
+| Token | Value | Use |
+|---|---:|---|
+| motion-fast | 120ms | Press and focus feedback |
+| motion-normal | 180ms | Menus, tabs, and controls |
+| motion-slow | 240ms | Dialogs and larger transitions |
+| motion-ease-out | cubic-bezier(0.16, 1, 0.3, 1) | Entering and settling |
+| motion-ease-in-out | cubic-bezier(0.4, 0, 0.2, 1) | Selection and position changes |
+
+Keep motion brief. Prefer opacity and transform. Avoid bounce, perpetual animation, large shimmer effects, and layout movement that changes control position during interaction. Respect reduced-motion preferences.
+
+## 4. Layout and navigation
 
 ### 4.1 Application frame
 
-- Keep global framing visually quiet and integrated with the content surfaces.
-- Distinguish global navigation, local navigation, page actions, and content controls.
-- Keep persistent framing stable while the relevant content changes or scrolls.
-- Give the main task or content the greatest visual weight.
-- Avoid large branding areas, redundant toolbars, and controls that duplicate actions already available near the content they affect.
+Keep the application frame visually quiet. Separate global navigation, local navigation, page actions, and content controls. The current task or content is the visual centre. Do not add branding panels, toolbars, or status regions that duplicate nearby actions.
 
-### 4.2 Navigation
+### 4.2 Segmented navigation
 
-When a product has a small set of top-level destinations, use Kryoto's **segmented pill navigation** as a reference:
+Use segmented pill navigation when the product has a small, stable set of peer destinations.
 
-- Place related destinations in one compact, coherent group.
+- Group related destinations into one compact control.
 - Use concise labels; add a simple line icon only when it improves recognition.
-- Show the active destination with a clearly contrasting filled segment.
-- Keep inactive segments muted, with restrained hover and focus feedback.
-- Keep page-specific actions separate from the destination selector.
-- If animated, move the active indicator smoothly and briefly without delaying the content change.
+- Show the active destination with a contrasting filled segment.
+- Keep inactive segments quiet but readable.
+- Keep page-specific actions outside the destination selector.
+- Expose the selected state semantically and support keyboard navigation.
+- Use a short active-indicator transition; never delay navigation.
 
-Use this pattern only when it fits the product's information architecture. Other navigation models should follow the same typography, spacing, colour, and state language. Do not force a segmented control into a large, deeply nested, or frequently changing navigation structure.
+Do not force segmented navigation into a large, nested, or frequently changing information architecture. Use another navigation pattern when it better fits the task.
 
 ### 4.3 Work area
 
-- Make the current task or content the visual centre of the interface.
-- Prefer a clear primary work area with deliberate internal grouping over many nested panels.
-- Add sidebars, split views, inspectors, tabs, or toolbars only when they support a real workflow.
-- Make the ownership of scrolling clear when multiple regions scroll independently.
-- Keep actions close to the content they affect.
-- Design the composition to handle empty, loading, populated, long, and error states without changing its visual language.
+Use a clear primary work area with deliberate internal grouping. Add sidebars, inspectors, split views, tabs, or toolbars only when they support a real workflow. Make scroll ownership clear when multiple regions scroll independently. Keep actions near the content they affect.
 
 ### 4.4 Persistent actions and status
 
-A compact status or action bar may be used when users need persistent access to a small number of global actions or ongoing activity. It is optional, not a required part of the design.
+A compact status or action bar is optional.
 
-- Keep its contents few, relevant, and visually secondary to the work area.
-- Show progress or activity only while it is useful.
-- Prefer concise labels, small icons, and restrained progress indicators.
+- Include only a few relevant global actions or ongoing statuses.
+- Show progress only while it helps the user understand ongoing work.
 - Do not reserve prominent space for empty placeholders.
-- On constrained layouts, move secondary actions and status into an overflow or contextual location.
+- Move secondary actions into overflow or contextual locations on constrained layouts.
 
-## 5. Component language
-
-Build a small, coherent set of reusable components. Components should share the same tokens, proportions, typography, and interaction states. The exact component architecture is implementation-dependent.
+## 5. Component specifications
 
 ### 5.1 Buttons
 
-Use consistent semantic variants:
+| Variant | Appearance | Use |
+|---|---|---|
+| Primary | Teal filled pill with dark foreground | Main local action |
+| Outline | Transparent or surface fill with border | Secondary action |
+| Ghost | No permanent border | Low-emphasis action |
+| Destructive | Danger semantic treatment | Risky or irreversible action |
 
-- **Primary:** light filled pill for the main action in a local context.
-- **Outline:** quiet surface or transparent background with a subtle border for secondary actions.
-- **Ghost:** no permanent border; uses a restrained surface or foreground change on hover and focus.
-- **Destructive:** uses the destructive semantic role and clear wording for risky actions.
-
-Every button needs coherent default, hover, focus, pressed, disabled, and pending states. Do not style every action as primary. Keep labels concise and consistent in casing. Make the full intended control area interactive.
+Buttons have default, hover, focus-visible, pressed, disabled, and pending states. Use concise labels and consistent casing. Avoid multiple primary buttons competing in one region.
 
 ### 5.2 Icon buttons
 
-- Use simple, consistent line icons in the visual style of Lucide.
-- Keep icon proportions, stroke, alignment, and target areas consistent.
-- Give icon-only controls accessible names. Add a tooltip when the icon's meaning is not obvious.
-- Do not substitute emoji or arbitrary text characters for interface icons.
-- Never rely on icon colour alone to explain an action or state.
+Use simple line icons with consistent optical size and stroke. Icon-only controls need accessible names; add a tooltip when the action is not self-evident. Do not use emoji or arbitrary text characters as core interface icons.
 
-### 5.3 Labels and supporting text
+### 5.3 Inputs and forms
 
-Use compact, tracked uppercase labels for section names and metadata when they improve scanning. Use normal casing and tracking for descriptions, instructions, and longer content. Keep supporting information subordinate to the value or content it describes. Avoid repeating information already clear from context.
+- Use persistent labels above or beside fields; placeholders are supplementary.
+- Use rounded rectangular fields with --input fill, --border boundary, and a visible --ring focus state.
+- Do not make text inputs full pills merely because buttons are pills.
+- Support text, search, password, number, date, select, checkbox, radio, switch, and textarea patterns with coherent geometry.
+- Group related fields by spacing and short section labels.
+- Put validation next to the affected field and explain how to correct it.
+- Preserve values after recoverable errors.
+- Keep keyboard and touch operation equivalent to pointer operation.
 
 ### 5.4 Cards, panels, and dividers
 
-Use a card or panel only when it groups related content or actions into a meaningful unit. Keep surfaces flat and restrained. Avoid nested card-on-card layouts, excessive outlines, and decorative shadows. Prefer spacing over dividers when a divider adds no useful structure. A static surface must not look interactive unless it is actionable.
+Use a panel when it represents a meaningful group of content or actions. Keep the surface flat and the border restrained. Avoid nested card-on-card layouts. Use spacing instead of separators where a divider adds no structure.
 
 ### 5.5 Menus and popovers
 
-- Anchor floating content to its trigger and align it predictably.
-- Use a distinct but restrained surface, subtle border, and limited shadow.
-- Keep menu rows compact and scannable.
-- Add icons, shortcuts, headings, or separators only when they add useful information.
-- Support keyboard operation and dismissal with Escape where appropriate.
-- Dismiss on outside interaction when appropriate, without making accidental dismissal likely during normal use.
-- Keep menus within the visible viewport or window.
-- Do not make hover the only way to open or use a menu. Touch and keyboard users need equivalent access.
-- If menus open on hover, introduce a short intentional delay to prevent accidental opening while the pointer crosses navigation.
+Anchor floating content to its trigger. Use an elevated opaque surface, subtle border, and restrained shadow. Keep menu rows compact and readable. Add icons, shortcuts, and separators only when useful. Support keyboard operation and Escape dismissal. Menus must remain within the viewport or desktop window and must not depend on hover.
 
 ### 5.6 Dialogs and settings
 
-- Use a restrained overlay and a clearly bounded panel.
-- Provide a clear title, close action, focused content area, and footer actions when needed.
-- Keep long content inside a designated scrollable region.
-- Adapt the panel to available space rather than preserving a desktop-sized dialog on a narrow viewport.
-- A two-pane settings layout with a section rail and content area is a useful reference for complex settings. Use it only when the number and relationship of settings justify it.
-- Group related settings with spacing and concise labels rather than unnecessary nested cards.
-- Manage focus on open and close. Prevent interaction with content behind a modal dialog.
+Use a clear title, close action, content region, and predictable footer actions. Long content scrolls inside the dialog. Adapt the panel to available space. A two-pane settings layout is appropriate only when the number and relationship of settings justify it. Group related settings with spacing, not nested cards. Manage focus on open and close.
 
-### 5.7 Tooltips, notifications, and status
+### 5.7 Tooltips, toasts, and status
 
-- Keep tooltips short and consistent. Essential instructions must not exist only in a tooltip.
-- Keep toast notifications compact and non-blocking. Show only the information needed to understand the event and any relevant next action.
-- Use restrained status indicators and progress treatments. Pair meaningful status with text; do not rely on colour or animation alone.
-- Design loading, empty, success, warning, offline, and error states as part of the same component language.
-- Empty states should explain the situation and offer a next step only when one exists. Do not insert fabricated sample content to fill empty space.
+Tooltips are short and supplementary; essential instructions must remain visible elsewhere. Toasts are compact, non-blocking, and actionable where appropriate. Status uses text or an icon as well as colour. Design loading, empty, success, warning, offline, and error states. Do not fill empty areas with fabricated sample content.
 
-### 5.8 Forms and data entry
+### 5.8 Tables and structured data
 
-- Use the same restrained surfaces, borders, typography, and focus treatment as other controls.
-- Give every field a persistent, programmatically associated label. Placeholder text is not a substitute for a label.
-- Group related fields through spacing and concise section labels.
-- Show validation near the affected field and explain how to resolve the issue.
-- Preserve entered values when validation fails or a recoverable operation is interrupted.
-- Ensure every control works with the supported input methods.
+When users compare records or aligned values, use a real table or clearly structured list. Align numeric values consistently, keep column headings persistent when useful, allow horizontal overflow on narrow screens, and provide a stacked or priority-column presentation when a table cannot fit. Do not solve dense data by shrinking text below the defined scale.
 
 ## 6. Interaction and motion
 
 ### 6.1 Interaction states
 
-Every interactive element must communicate its state consistently:
+Every interactive element defines default, hover, focus, pressed, selected, disabled, pending, and error states as applicable. Hover and selected must not look identical. A state must remain understandable without colour or animation.
 
-- **Default:** quiet and appropriate to its role.
-- **Hover:** subtle surface, border, or foreground change on hover-capable devices.
-- **Focus:** clearly visible keyboard focus with adequate contrast.
-- **Pressed:** immediate, restrained feedback.
-- **Selected:** persistent and visually distinct from hover.
-- **Disabled:** visibly unavailable and not presented as active.
-- **Pending:** communicates ongoing work and prevents accidental duplicate activation when necessary.
-- **Error:** identifies the affected control or operation and offers a recovery path where possible.
+### 6.2 Keyboard, pointer, and touch
 
-Do not use the same appearance for hover and persistent selection. State must remain understandable without colour or motion.
+- All essential actions are keyboard-operable.
+- Focus is visible and follows a logical order.
+- Menus and dialogs support conventional keyboard behaviour.
+- Closing an overlay returns focus to its trigger where appropriate.
+- Hover never provides the only access to an action.
+- Touch controls do not require precision pointer movement.
+- Shortcuts are enhancements, not replacements for visible controls.
 
-### 6.2 Motion
+### 6.3 Motion
 
-The reference uses brief fades, subtle scale or positional changes, and small status animations. Follow the same restrained approach:
-
-- Use motion to explain opening, closing, selection, navigation, or feedback.
-- Prefer opacity and transform where appropriate.
-- Keep movement short and controlled.
-- Avoid bouncy transitions, decorative perpetual motion, large shimmer effects, and unnecessary layout animation.
-- Never make an animation delay an action or move a control away from a pointer or focused element.
-- Respect `prefers-reduced-motion` and any in-app reduced-motion setting. Preserve the final state and all status information when animation is disabled.
-
-Treat timing values as design decisions to tune and test, not fixed universal targets.
-
-### 6.3 Keyboard, pointer, and touch
-
-- All essential actions must be keyboard-operable.
-- Keep focus visible and the focus order logical.
-- Support conventional menu navigation and Escape dismissal where appropriate.
-- Return focus to the invoking control when a dialog or menu closes, where applicable.
-- Do not make hover the only source of essential information or functionality.
-- Preserve selection in content and editable fields. Disable selection only on non-content chrome when needed for window dragging or interaction.
-- Use familiar shortcuts where appropriate and show them in menus when available.
-- Support touch where the product is expected to run on touch-enabled devices. Do not rely on hover or precision pointer movement.
+Use motion to explain opening, closing, selection, and feedback. Keep movement short and controlled. Do not move controls away from a pointer or focused element. Disable nonessential motion when reduced motion is requested.
 
 ## 7. Web and desktop delivery
 
-The visual identity must remain consistent across web and desktop. Adapt framing and system behaviour to the platform rather than creating two unrelated designs.
-
 ### 7.1 Web
 
-- Treat the browser viewport as the application area. Do not draw a fake operating-system title bar or duplicate browser navigation controls.
-- Keep application navigation distinct from browser controls.
-- Support browser resizing, zoom, text selection, scrolling, keyboard navigation, and native accessibility features.
-- Prefer standard web platform behaviour. Essential appearance and interaction must not depend on one browser's proprietary behaviour.
-- Test typography, focus, menus, popovers, dialogs, forms, scrolling, and responsive layouts in the browsers the product supports.
+Treat the browser viewport as the application area. Do not draw a fake operating-system title bar or duplicate browser controls. Support resizing, browser zoom, text selection, scrolling, keyboard navigation, and native accessibility features. Do not depend on one browser's proprietary rendering behaviour.
 
 ### 7.2 Desktop
 
-- Respect the desktop environment and its window-management conventions. Do not imitate Windows or macOS chrome in a Linux application.
-- Prefer native window decorations unless custom chrome has a clear product and usability benefit. If using custom chrome, preserve expected window-manager behaviour and keep interactive controls outside draggable regions.
-- Do not assume one display scale, compositor, window manager, desktop environment, or system theme.
-- Keep window-specific controls and behaviours in the desktop shell; do not introduce them into the web interface.
+Respect the host operating system's window conventions. Prefer native title bars unless custom chrome has a clear product benefit. If custom chrome is used, preserve window-manager behaviour and keep interactive controls outside draggable regions. Do not assume a single display scale, compositor, or system theme.
 
-### 7.3 Linux and WebKitGTK
+Test the actual desktop runtime, including fonts, focus, scrolling, menus, dialogs, resizing, and system scaling. A browser preview alone is not sufficient evidence that a packaged desktop application behaves correctly.
 
-When the desktop target is Linux and uses Tauri, validate the design in the actual **WebKitGTK** runtime. A Chromium-based browser preview is not sufficient.
+### 7.3 Platform-specific checks
 
-- Prefer opaque window and panel surfaces. Do not make the design depend on transparent corners, backdrop blur, or compositor-specific effects.
-- Use CSS effects conservatively. Large blur regions, animated backgrounds, and repaint-heavy effects can perform poorly in some WebKitGTK environments.
-- Test font rendering and provide Linux-compatible fallbacks.
-- Ensure custom dragging does not intercept buttons, links, menus, text fields, or other interactive elements.
-- Verify focus, scrolling, popovers, dialogs, window resizing, display scaling, and animations in the packaged application.
-- Treat WebKitGTK compatibility as a design and QA constraint, not as a reason to compromise the shared visual language unnecessarily.
+- **Windows:** verify WebView2 rendering, system scaling, native title-bar controls, and keyboard conventions.
+- **macOS:** respect traffic-light control placement and insets when custom title bars are used; verify menu and keyboard conventions.
+- **Linux:** test the target toolkit, compositor, window manager, and actual WebKitGTK or other embedded runtime when used. Do not assume transparent corners, backdrop blur, or compositor-specific effects are available.
+- **Shared product:** keep semantic tokens, terminology, hierarchy, and interaction states consistent. Limit platform differences to system integration and genuine usability needs.
 
-### 7.4 Shared web and desktop product
-
-- Share semantic colour, typography, shape, spacing, component, and motion tokens.
-- Keep terminology, information hierarchy, component states, and workflow semantics consistent.
-- Adapt the application frame to the platform: browser viewport on the web, desktop window conventions in the native application.
-- Do not duplicate browser controls in the desktop shell or desktop window controls in the web page.
-- Reflow navigation, dialogs, menus, and persistent status to fit the available space while preserving their visual language and meaning.
-- Keep platform-specific exceptions deliberate and limited to usability, accessibility, or system integration needs.
+Do not overfit the design to one Linux/WebKitGTK combination. Likewise, do not imitate Windows or macOS chrome in a Linux application.
 
 ## 8. Accessibility and usability
 
-The visual style must never take priority over usability.
-
-- Maintain sufficient contrast for text, icons, meaningful borders, and focus indicators.
-- Do not use colour as the only way to communicate selection, status, error, or progress.
-- Use semantic controls and meaningful accessible names. Icon-only controls require accessible labels.
+- Maintain sufficient contrast for text, icons, boundaries, and focus.
+- Never use colour alone for selection, status, or errors.
+- Use semantic controls and accessible names.
+- Associate field labels and validation messages with their controls.
 - Provide logical reading and focus order.
-- Associate form labels and validation messages with their controls.
-- Support reduced motion, browser zoom, and text enlargement without clipping or loss of functionality.
+- Support reduced motion, browser zoom, and text enlargement.
+- Ensure menus, dialogs, tables, and forms work with the keyboard.
 - Keep targets comfortably operable with supported input methods.
-- Ensure transient messages remain perceivable long enough to understand and are not the only place important information appears.
+- Important information must not exist only in a tooltip or transient toast.
 
-## 9. Implementation guidance
+## 9. Implementation and adaptation guidance
 
-This document specifies the design outcome, not a mandatory framework, component library, or code architecture.
-
-- Define semantic tokens centrally for colour, typography, shape, spacing, borders, and motion.
-- Build reusable primitives for repeated controls and interaction patterns.
+- Centralise semantic colour, typography, spacing, radius, border, elevation, focus, and motion tokens.
+- Build reusable controls and interaction patterns.
 - Keep product logic separate from presentation.
-- Use the chosen framework and styling approach without fragmenting the visual system into one-off styles.
-- Existing component libraries may be used if their appearance and accessibility behaviour can be brought into alignment with this specification.
-- Avoid adding dependencies solely for basic controls when a small, maintainable implementation is sufficient.
-- Do not copy Kryoto branding, proprietary assets, names, product terminology, or product features unless separately authorised and appropriate.
-- Where a pattern must differ for product, accessibility, or platform reasons, make the exception intentional and consistent.
+- Use a chosen component library only when its appearance and accessibility can be aligned with this specification.
+- Do not add dependencies solely for basic controls when a small maintainable implementation is sufficient.
+- Do not copy proprietary assets, branding, or product features without authorisation.
+- Do not copy source implementation defects as design requirements.
 
-## 10. Quality criteria
+## 10. Quality checklist
 
-The resulting interface should satisfy all of the following:
-
-- It carries Kryoto's restrained, near-black, technical visual character without copying its product screens.
-- Typography, colour, surfaces, borders, spacing, shapes, and icons form one coherent system.
-- The content and the user's current task remain the visual priority.
-- Navigation and selected states are immediately understandable wherever navigation is needed.
-- Components have complete, consistent interaction states.
-- Information density is balanced with readability and comfortable interaction targets.
-- Layouts adapt to browser viewports and resizable desktop windows without relying on copied dimensions.
-- Web behaviour remains usable with resizing, zoom, scrolling, keyboard input, and supported browsers.
-- Desktop behaviour respects platform conventions and is tested in its actual runtime.
-- Linux builds using WebKitGTK are tested in WebKitGTK, including focus, scrolling, menus, dialogs, fonts, and visual effects.
-- Web and desktop versions retain the same visual identity and interaction semantics while respecting platform differences.
-- Motion is purposeful, brief, and compatible with reduced-motion preferences.
-- Essential operations work with keyboard and supported pointer or touch input.
-
-## 11. Kryoto reference files
-
-Use these files to inspect concrete examples of the reference's implementation. They are references, not required project files or a template architecture.
-
-- [Global styles, design tokens, palettes, typography, and motion](https://github.com/Kryoto-Dev/kryoto-desktop/blob/main/src/styles.css)
-- [Buttons, icon buttons, cards, dialogs, menus, labels, and captions](https://github.com/Kryoto-Dev/kryoto-desktop/blob/main/src/ui/index.tsx)
-- [Segmented navigation and active selection behaviour](https://github.com/Kryoto-Dev/kryoto-desktop/blob/main/src/shell/NavBar.tsx)
-- [Title bar and desktop window interaction patterns](https://github.com/Kryoto-Dev/kryoto-desktop/blob/main/src/shell/TitleBar.tsx)
-- [Compact persistent actions and status](https://github.com/Kryoto-Dev/kryoto-desktop/blob/main/src/shell/BottomBar.tsx)
-- [Frontend dependencies and font/icon packages](https://github.com/Kryoto-Dev/kryoto-desktop/blob/main/package.json)
-
-When implementation detail matters, inspect the current source file. This specification captures the reusable design direction and does not attempt to document every product-specific behaviour in Kryoto Desktop.
+- [ ] The interface feels restrained, technical, dark, and precise.
+- [ ] Semantic tokens have explicit hex values and foreground pairings.
+- [ ] Type, spacing, radius, elevation, and motion use the defined scales.
+- [ ] Teletext is not used as the default body or form font.
+- [ ] Pills are reserved for actions and segmented controls; fields remain rounded rectangles.
+- [ ] Navigation fits the actual information architecture.
+- [ ] Forms, tables, menus, dialogs, and status states are specified.
+- [ ] Web behaviour supports browser resizing, zoom, and keyboard use.
+- [ ] Desktop behaviour respects the target operating system and runtime.
+- [ ] No platform-specific rendering assumption is treated as universal.
+- [ ] Reduced motion and accessible focus are supported.
