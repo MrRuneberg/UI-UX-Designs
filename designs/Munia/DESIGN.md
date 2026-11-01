@@ -39,7 +39,7 @@ Use the semantic token names below in both themes. The hex values are normative 
 | Primary hover | --primary-hover | #6F00A8 | Hovered primary control |
 | Muted surface | --muted | #EAE0F2 | Quiet controls and secondary panels |
 | Muted foreground | --muted-fg | #5E5068 | Secondary text |
-| Surface hover | --surface-hover | #E9DFF0 | Hovered quiet controls |
+| Surface hover | --surface-hover | #DFD2EB | Hovered quiet controls |
 | Border | --border | #E2D6EC | Subtle card, panel, and divider boundaries |
 | Strong border | --border-strong | #8A7B91 | Input boundaries and controls requiring a clear edge |
 | Input | --input | #F2ECF7 | Recessed form-field fill |
